@@ -71,7 +71,7 @@ public class ReadImages {
      */
     private static void testConvertYzm() throws Exception {
         //图片路径：当你的代码所在的目录是maven的父工程的时候，你就可以像我这样写相对路径，注意一定要是在maven父工程；否则，就写物理路径！不然会无法读取。
-        File imageFile = new File("./images/yzm.png");
+        File imageFile = new File("../images/yzm.png");
         //File imageFile = new File("./images/mohu-yzm.png");
         BufferedImage image = ImageIO.read(imageFile);
         //对图片进行处理，提高识别度，如果图片清晰度已经可以了，建议不要处理，放大之后可能会有偏差。
@@ -107,14 +107,15 @@ public class ReadImages {
      */
     private static void testConvertZh() throws Exception {
         //图片路径：当你的代码所在的目录是maven的父工程的时候，你就可以像我这样写相对路径，注意一定要是在maven父工程；否则，就写物理路径！不然会无法读取。
-        File imageFile = new File("./images/zh.png");
+//        File imageFile = new File("./images/zh.png");
+        File imageFile = new File("D:\\codesource\\githubproject\\readImage\\readImage\\images\\zh.png");
         //读取图片路径，并提高识别度
         BufferedImage image = ImageIO.read(imageFile);
         //对图片进行处理，提高识别度，如果图片清晰度已经可以了，建议不要处理，放大之后可能会有偏差。
         image = convertImage(image);
         ITesseract instance = new Tesseract();//JNA Interface Mapping
         //设置tessdata的路径
-        //instance.setDatapath(""); //当你的代码所在的目录是maven的父工程的时候，不需要写，注意一定要是在maven父工程；否则，就写物理路径！不然会无法读取。
+        instance.setDatapath("D:\\codesource\\githubproject\\readImage\\readImage\\tessdata"); //当你的代码所在的目录是maven的父工程的时候，不需要写，注意一定要是在maven父工程；否则，就写物理路径！不然会无法读取。
         instance.setLanguage("chi_sim");//使用中文字库
         String result = instance.doOCR(image); //识别
         System.out.println(result);
